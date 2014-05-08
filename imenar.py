@@ -127,7 +127,7 @@ def _make_stat_advlookup():
         possibles = []
         startpos = 0
         s = re.sub('[' + re.escape('-()') + ']+', ' ', s)
-        s = re.sub('\s+', ' ', s)
+        s = re.sub('\s+', ' ', s).strip()
         m = space_re.search(s, startpos)
         while m:
             icand = s[:m.start()]
