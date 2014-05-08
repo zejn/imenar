@@ -158,7 +158,7 @@ def _make_stat_advlookup():
                     possibles.append((Tag(' '.join(imena2), tip=PRVA_IME), Tag(' '.join(priimki2), tip=PRVA_IME)))
                 if all([i.upper() in priimki_dict for i in imena2]) and \
                         all([i.upper() in imena_dict for i in priimki2]):
-                    possibles.append((Tag(' '.join(imena2), tip=PRVA_PRIIMEK), Tag(' '.join(priimki2), tip=PRVA_PRIIMEK)))
+                    possibles.append((Tag(' '.join(priimki2), tip=PRVA_PRIIMEK), Tag(' '.join(imena2), tip=PRVA_PRIIMEK)))
 
         if len(possibles) == 1:
             return [i.s for i in possibles[0]]
