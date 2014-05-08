@@ -26,9 +26,9 @@ def test_algo(func, use_hint=False):
         ime, priimek = [i.decode('utf-8').upper() for i in line]
         
         compound1 = u'%s %s' % (ime, priimek)
-        compound1 = re.sub('[' + re.escape('-()') + ']+', '', compound1)
+        compound1 = re.sub('[' + re.escape('-()') + ']+', ' ', compound1)
         compound2 = u'%s %s' % (priimek, ime)
-        compound2 = re.sub('[' + re.escape('-()') + ']+', '', compound2)
+        compound2 = re.sub('[' + re.escape('-()') + ']+', ' ', compound2)
         maxscore += 2
         
         if use_hint:
@@ -58,8 +58,8 @@ def _make_lookup():
     lookup_dict = {}
     for line in rdr:
         ime, priimek = [i.decode('utf-8').upper() for i in line]
-        ime = re.sub('[' + re.escape('-()') + ']+', '', ime)
-        priimek = re.sub('[' + re.escape('-()') + ']+', '', priimek)
+        ime = re.sub('[' + re.escape('-()') + ']+', ' ', ime)
+        priimek = re.sub('[' + re.escape('-()') + ']+', ' ', priimek)
         lookup_dict[u'%s %s' % (ime, priimek)] = (ime, priimek)
         lookup_dict[u'%s %s' % (priimek, ime)] = (ime, priimek)
 
@@ -126,13 +126,15 @@ def _make_stat_advlookup():
     def lookup_stat_adv(s, hint=None):
         possibles = []
         startpos = 0
+        s = re.sub('[' + re.escape('-()') + ']+', ' ', s)
+        s = re.sub('\s+', ' ', s)
         m = space_re.search(s, startpos)
         while m:
             icand = s[:m.start()]
             pcand = s[m.end():]
             #print [icand, pcand]
             #print [icand in imena_dict, pcand in priimki_dict]
-            if icand in imena_dict and pcand in priimki_dict:
+            if icand.upper() in imena_dict and pcand.upper() in priimki_dict:
                 possibles.append((Tag(icand, tip=PRVA_IME), Tag(pcand, tip=PRVA_IME)))
 
             icand = s[m.end():]
@@ -140,7 +142,7 @@ def _make_stat_advlookup():
             #print [icand, pcand]
             #print [icand in imena_dict, pcand in priimki_dict]
             #import pdb; pdb.set_trace()
-            if icand in imena_dict and pcand in priimki_dict:
+            if icand.upper() in imena_dict and pcand.upper() in priimki_dict:
                 possibles.append((Tag(icand, tip=PRVA_PRIIMEK), Tag(pcand, tip=PRVA_PRIIMEK)))
             startpos = m.end() + 1
             #print 'woo', [startpos, s]
@@ -151,11 +153,11 @@ def _make_stat_advlookup():
             for n in xrange(1, len(words)):
                 imena2 = words[:n]
                 priimki2 = words[n:]
-                if all([i in imena_dict for i in imena2]) and \
-                        all([i in priimki_dict for i in priimki2]):
+                if all([i.upper() in imena_dict for i in imena2]) and \
+                        all([i.upper() in priimki_dict for i in priimki2]):
                     possibles.append((Tag(' '.join(imena2), tip=PRVA_IME), Tag(' '.join(priimki2), tip=PRVA_IME)))
-                if all([i in priimki_dict for i in imena2]) and \
-                        all([i in imena_dict for i in priimki2]):
+                if all([i.upper() in priimki_dict for i in imena2]) and \
+                        all([i.upper() in imena_dict for i in priimki2]):
                     possibles.append((Tag(' '.join(imena2), tip=PRVA_PRIIMEK), Tag(' '.join(priimki2), tip=PRVA_PRIIMEK)))
 
         if len(possibles) == 1:
