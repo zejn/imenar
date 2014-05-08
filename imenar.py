@@ -141,7 +141,19 @@ def _make_stat_advlookup():
             startpos = m.end() + 1
             #print 'woo', [startpos, s]
             m = space_re.search(s, startpos)
-            
+
+        words = re.split('\s+', s)
+        if len(words) > 2:
+            for n in xrange(1, len(words)):
+                imena2 = words[:n]
+                priimki2 = words[n:]
+                if all([i in imena_dict for i in imena2]) and \
+                        all([i in priimki_dict for i in priimki2]):
+                    possibles.append((Tag(' '.join(imena2), tip=PRVA_IME), Tag(' '.join(priimki2), tip=PRVA_IME)))
+                if all([i in priimki_dict for i in imena2]) and \
+                        all([i in imena_dict for i in priimki2]):
+                    possibles.append((Tag(' '.join(imena2), tip=PRVA_PRIIMEK), Tag(' '.join(priimki2), tip=PRVA_PRIIMEK)))
+
         if len(possibles) == 1:
             return [i.s for i in possibles[0]]
         elif len(possibles) == 2:
