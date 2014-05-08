@@ -26,7 +26,9 @@ def test_algo(func, use_hint=False):
         ime, priimek = [i.decode('utf-8').upper() for i in line]
         
         compound1 = u'%s %s' % (ime, priimek)
+        compound1 = re.sub('[' + re.escape('-()') + ']+', '', compound1)
         compound2 = u'%s %s' % (priimek, ime)
+        compound2 = re.sub('[' + re.escape('-()') + ']+', '', compound2)
         maxscore += 2
         
         if use_hint:
@@ -56,6 +58,8 @@ def _make_lookup():
     lookup_dict = {}
     for line in rdr:
         ime, priimek = [i.decode('utf-8').upper() for i in line]
+        ime = re.sub('[' + re.escape('-()') + ']+', '', ime)
+        priimek = re.sub('[' + re.escape('-()') + ']+', '', priimek)
         lookup_dict[u'%s %s' % (ime, priimek)] = (ime, priimek)
         lookup_dict[u'%s %s' % (priimek, ime)] = (ime, priimek)
 
