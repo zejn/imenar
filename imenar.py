@@ -119,10 +119,6 @@ def _make_stat_advlookup():
             self.s = s
             self.tip = tip
 
-    #print 'VCS', u'\u010cADONI\u010c \u0160PELI\u010c' in priimki_dict
-    #print 'VCS1', u'\u010cADONI\u010c' in priimki_dict
-    #print 'VCS2', u'\u0160PELI\u010c' in priimki_dict
-
     def lookup_stat_adv(s, hint=None):
         possibles = []
         startpos = 0
@@ -160,7 +156,7 @@ def _make_stat_advlookup():
                         return [i.s for i in possibles2[0]]
             return (u'', u'')
         else:
-            #print possibles
+            print s, possibles
             #raise
             return (u'', u'')
     return lookup_stat_adv
@@ -168,6 +164,7 @@ lookup_stat_adv = _make_stat_advlookup()
 
 if __name__ == "__main__":
     
+    print 'score\t\thint\tfunc'
     for hint in [False, True]:
         print '-'*40
         for algo in [
@@ -178,4 +175,4 @@ if __name__ == "__main__":
                 split_right]:
             test_algo(algo, use_hint=hint)
     
-    
+    imena, priimki = get_dataset()
