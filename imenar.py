@@ -170,9 +170,10 @@ def _make_stat_advlookup():
                     possibles2 = [i for i in possibles if i[0].tip == PRVA_PRIIMEK]
                     if possibles2[0][0].tip == PRVA_PRIIMEK:
                         return [i.s for i in possibles2[0]]
+            #print 11, s, possibles
             return (u'', u'')
         else:
-            print s, possibles
+            #print 22, s, possibles
             #raise
             return (u'', u'')
     return lookup_stat_adv
