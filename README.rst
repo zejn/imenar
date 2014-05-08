@@ -1,7 +1,7 @@
 Imenar
 ======
 
-Funkcije, ki razdelijo skupno polje `ime_priimek` na ločeni `ime, priimek`. Funkcije vzamejo po dva parametra, string in hint. String je vrednost polja `ime_priimek`. Neobvezni parameter `hint` je `imenar.PRVA_IME` ali `imenar.PRVA_PRIIMEK`, ki algoritmu poda namig kaj je prvo v polju.
+Funkcije, ki razdelijo skupno polje `ime_priimek` na ločeni `ime, priimek`. Funkcije vzamejo po dva parametra, string in hint. String je vrednost polja `ime_priimek`. Neobvezni parameter `hint` je `imenar.PRVA_IME` ali `imenar.PRVA_PRIIMEK`, ki algoritmu poda namig kaj je prvo v polju. Za delo uporablja podatke o imenih s Statističnega urada RS.
 
 Priporoča se raba funkcije `lookup_stat_adv`.
 
