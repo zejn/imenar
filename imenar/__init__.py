@@ -2,6 +2,7 @@
 
 import csv
 import re
+import os
 
 IME = 1
 PRIIMEK = 2
@@ -9,10 +10,11 @@ PRVA_IME = 1
 PRVA_PRIIMEK = 2
 
 def get_dataset():
-    ir = open('data/csv/imena.csv')
+    datafile = lambda x: os.path.join(os.path.dirname(__file__), x)
+    ir = open(datafile('imena.csv'))
     imena = [i.decode('utf-8').upper().strip() for i in ir]
 
-    pr = open('data/csv/priimki.csv')
+    pr = open(datafile('priimki.csv'))
     priimki = [i.decode('utf-8').upper().strip() for i in pr]
 
     return imena, priimki
