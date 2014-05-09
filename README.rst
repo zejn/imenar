@@ -16,6 +16,8 @@ Primer rabe::
 	[u'Marica', u'Gregori\u010d Stepan\u010di\u010d']
 	>>> imenar.lookup_stat_adv(u'Goljevšček Kermauner Alenka')
 	[u'Alenka', u'Goljev\u0161\u010dek Kermauner']
+	>>> imenar.lookup_stat_adv(u'Mag. Goljevšček Kermauner Alenka')
+	[u'Alenka', u'Goljev\u0161\u010dek Kermauner']
 
 
 Funkcije in uspešnost::
