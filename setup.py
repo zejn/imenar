@@ -4,7 +4,7 @@
 from distutils.core import setup
 
 setup(name='imenar',
-    version='1.0',
+    version='1.0.1',
     description='Imenar - split slovenian name_surname into (name, surname)',
     author='Gasper Zejn',
     author_email='zejn@kiberpipa.org',
