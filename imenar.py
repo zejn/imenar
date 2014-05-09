@@ -127,6 +127,9 @@ def _make_stat_advlookup():
             self.s = s
             self.tip = tip
 
+        def __repr__(self):
+            return self.s.encode('utf-8')
+
     def lookup_stat_adv(s, hint=None):
         possibles = []
         startpos = 0
@@ -170,11 +173,11 @@ def _make_stat_advlookup():
             if hint is not None:
                 if hint == PRVA_IME:
                     possibles2 = [i for i in possibles if i[0].tip == PRVA_IME]
-                    if possibles2[0][0].tip == PRVA_IME:
+                    if possibles2 and possibles2[0][0].tip == PRVA_IME:
                         return [i.s for i in possibles2[0]]
                 if hint == PRVA_PRIIMEK:
                     possibles2 = [i for i in possibles if i[0].tip == PRVA_PRIIMEK]
-                    if possibles2[0][0].tip == PRVA_PRIIMEK:
+                    if possibles2 and possibles2[0][0].tip == PRVA_PRIIMEK:
                         return [i.s for i in possibles2[0]]
             #print 11, s, possibles
             return (u'', u'')
