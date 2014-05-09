@@ -134,31 +134,9 @@ def _make_stat_advlookup():
 
     def lookup_stat_adv(s, hint=None):
         possibles = []
-        startpos = 0
-        s = re.sub('[' + re.escape('.-()') + ']+', ' ', s)
-        s = re.sub('\s+', ' ', s).strip()
-        m = space_re.search(s, startpos)
-        while m:
-            icand = s[:m.start()]
-            pcand = s[m.end():]
-            #print [icand, pcand]
-            #print [icand in imena_dict, pcand in priimki_dict]
-            if icand.upper() in imena_dict and pcand.upper() in priimki_dict:
-                possibles.append((Tag(icand, tip=PRVA_IME), Tag(pcand, tip=PRVA_IME)))
-
-            icand = s[m.end():]
-            pcand = s[:m.start()]
-            #print [icand, pcand]
-            #print [icand in imena_dict, pcand in priimki_dict]
-            #import pdb; pdb.set_trace()
-            if icand.upper() in imena_dict and pcand.upper() in priimki_dict:
-                possibles.append((Tag(icand, tip=PRVA_PRIIMEK), Tag(pcand, tip=PRVA_PRIIMEK)))
-            startpos = m.end() + 1
-            #print 'woo', [startpos, s]
-            m = space_re.search(s, startpos)
 
         words = re.split('\s+', s)
-        if len(words) > 2:
+        if len(words) >= 2:
             for n in xrange(1, len(words)):
                 imena2 = words[:n]
                 priimki2 = words[n:]
