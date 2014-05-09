@@ -184,7 +184,7 @@ def _make_stat_advlookup():
         else:
             # Izloci doktorje in magistre.
             if 'MAG' in words or 'DR' in words or 'MBA' in words:
-                new_s = re.sub(u'\s+', ' ', re.sub(ur'\b(MAG|DR|MBA)\b', ' ', s).strip()
+                new_s = re.sub(u'\s+', ' ', re.sub(ur'\b(MAG|DR|MBA)\b', ' ', s)).strip()
                 return lookup_stat_adv(new_s, hint=hint)
             #print 22, s, possibles
             #raise
