@@ -8,9 +8,9 @@ IME = 1
 PRIIMEK = 2
 PRVA_IME = 1
 PRVA_PRIIMEK = 2
+datafile = lambda x: os.path.join(os.path.dirname(__file__), x)
 
 def get_dataset():
-    datafile = lambda x: os.path.join(os.path.dirname(__file__), x)
     ir = open(datafile('imena.csv'))
     imena = [i.decode('utf-8').upper().strip() for i in ir]
 
@@ -21,7 +21,7 @@ def get_dataset():
 
 def test_algo(func, use_hint=False, data=None):
     if data is None:
-        rdr = csv.reader(open('data/test.csv'))
+        rdr = csv.reader(open(datafile('test.csv')))
         data = []
         for line in rdr:
             data.append([i.decode('utf-8').upper() for i in line])
