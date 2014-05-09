@@ -17,13 +17,17 @@ def get_dataset():
 
     return imena, priimki
 
-def test_algo(func, use_hint=False):
-    rdr = csv.reader(open('data/test.csv'))
+def test_algo(func, use_hint=False, data=None):
+    if data is None:
+        rdr = csv.reader(open('data/test.csv'))
+        data = []
+        for line in rdr:
+            data.append([i.decode('utf-8').upper() for i in line])
     score = 0
     maxscore = 0
     hint = None
-    for line in rdr:
-        ime, priimek = [i.decode('utf-8').upper() for i in line]
+    for line in data:
+        ime, priimek = line
         
         compound1 = u'%s %s' % (ime, priimek)
         compound1 = re.sub('[' + re.escape('-()') + ']+', ' ', compound1)
