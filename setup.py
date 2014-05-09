@@ -10,5 +10,5 @@ setup(name='imenar',
     author_email='zejn@kiberpipa.org',
     url='http://github.com/zejn/imenar/',
     packages=['imenar'],
-    package_data={'imenar': ['imena.csv', 'priimki.csv']},
+    package_data={'imenar': ['imena.csv', 'priimki.csv', 'test.csv']},
 )

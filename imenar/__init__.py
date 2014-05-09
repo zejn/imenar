@@ -60,7 +60,7 @@ def split_right(s, hint=None):
     return [i.strip() for i in s.rsplit(' ', 1)]
 
 def _make_lookup():
-    rdr = csv.reader(open('data/test.csv'))
+    rdr = csv.reader(open(datafile('test.csv')))
     lookup_dict = {}
     for line in rdr:
         ime, priimek = [i.decode('utf-8').upper() for i in line]
