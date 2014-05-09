@@ -133,7 +133,7 @@ def _make_stat_advlookup():
     def lookup_stat_adv(s, hint=None):
         possibles = []
         startpos = 0
-        s = re.sub('[' + re.escape('-()') + ']+', ' ', s)
+        s = re.sub('[' + re.escape('.-()') + ']+', ' ', s)
         s = re.sub('\s+', ' ', s).strip()
         m = space_re.search(s, startpos)
         while m:
@@ -179,15 +179,15 @@ def _make_stat_advlookup():
                     possibles2 = [i for i in possibles if i[0].tip == PRVA_PRIIMEK]
                     if possibles2 and possibles2[0][0].tip == PRVA_PRIIMEK:
                         return [i.s for i in possibles2[0]]
-            #print 11, s, possibles
+            #print [11, s, possibles]
             return (u'', u'')
         else:
             # Izloci doktorje in magistre.
-            if 'MAG' in words or 'DR' in words or 'MBA' in words:
-                new_s = re.sub(u'\s+', ' ', re.sub(ur'\b(MAG|DR|MBA)\b', ' ', s)).strip()
+            uwords = [w.upper() for w in words]
+            if 'MAG' in uwords or 'DR' in uwords or 'MBA' in uwords:
+                new_s = re.sub(u'\s+', ' ', re.sub(ur'\b(MAG|DR|MBA)\b', ' ', s, flags=(re.I|re.U))).strip()
                 return lookup_stat_adv(new_s, hint=hint)
-            #print 22, s, possibles
-            #raise
+            #print [22, s, possibles]
             return (u'', u'')
     return lookup_stat_adv
 lookup_stat_adv = _make_stat_advlookup()
